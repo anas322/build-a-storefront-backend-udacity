@@ -8,45 +8,57 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 #### Products
 
-- Index
-- Show (args: product id)
-- Create (args: Product)[token required]
-- [OPTIONAL] Top 5 most popular products
-- [OPTIONAL] Products by category (args: product category)
+- Index: `'products/' [GET]`
+- Show: `'products/:id' [GET]`
+- [OPTIONAL] Products by category: `'/products/category/:cat' [GET]`
+- Create (args: Product)[token required]: `'/products' [POST] (token)`
+- [additional] Delete: `'/products/:name [DELETE]`
 
 #### Users
 
-- Index [token required]
-- Show (args: id)[token required]
-- Create (args: User)[token required]
+- Index [token required]: `'/users' [GET] `
+- Show [token required]: `'/users/:id' [GET] `
+- Create (args: User): `'/users' [POST] `
+- [additional] Delete [token required]: `'/users/:username' [DELETE] `
 
 #### Orders
 
-- Current Order by user (args: user id)[token required]
-- [OPTIONAL] Completed Orders by user (args: user id)[token required]
-
-<!-- done -->
+- Index [token required]: `'/orders/:id' [GET] `
+- Current Order by user [token required]: `'/orders/user/:id/current' [GET] `
+- [OPTIONAL] Completed Orders by user [token required]: `'/orders/user/:id/complete' [GET] `
+- Create (args: Order): `'/orders/create' [POST] `
+- [additional] Delete [token required]: `'/orders/:order_id/delete' [DELETE] `
 
 ## Data Shapes
 
 #### Product
 
-- id
-- name
-- price
-- [OPTIONAL] category
+Table: _products_
+
+- id `SERIAL PRIMARY KEY`
+- name `VARCHAR`
+- price `INTEGER`
 
 #### User
 
-- id
-- firstName
-- lastName
-- password
+Table: _users_
+
+- id `SERIAL PRIMARY KEY`
+- username `VARCHAR`
+- firstname `VARCHAR`
+- lastname `VARCHAR`
+- password `VARCHAR`
 
 #### Orders
 
-- id
-- id of each product in the order
-- quantity of each product in the order
-- user_id
-- status of order (active or complete)
+Table: _orders_
+
+- id `SERIAL PRIMARY KEY`
+- user_id `INTEGER` `REFERENCES users(id)`
+- status `BOOLEAN`
+
+Table: _order_products_
+
+- order_id `INTEGER` `REFERENCES orders(id)`
+- product_id `INTEGER` `REFERENCES products(id)`
+- quantity `INTEGER`

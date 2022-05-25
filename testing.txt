@@ -1,0 +1,31 @@
+TEST TABLES
+
+store_test=# select * from orders; select * from order_products; select * from products; select * from users;
+
+ id | user_id |  status
+----+---------+----------
+  1 |       1 | active
+  2 |       1 | complete
+(2 rows)
+
+
+ id | order_id | product_id | quantity
+----+----------+------------+----------
+  1 |        1 |          1 |        5
+  2 |        2 |          1 |        5
+(2 rows)
+
+
+ id |    name    | price |  category
+----+------------+-------+------------
+  1 | cherry     |    40 | fruits
+  2 | tomatto    |    20 | vegetables
+  3 | watermelon |    25 | vegetables
+(3 rows)
+
+
+ id | username | firstname | lastname | password
+----+----------+-----------+----------+----------
+  1 | user1    | test      | user     | password
+  2 | user2    | test      | user     | password
+(2 rows)
