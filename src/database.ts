@@ -19,4 +19,7 @@ const client = new Pool({
   password: POSTGRES_PASSWORD,
 })
 
+ENV == 'dev'
+  ? console.log('-------------------DEV-------------------')
+  : console.log('-------------------TEST------------------')
 export default client

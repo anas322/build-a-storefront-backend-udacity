@@ -1,3 +1,11 @@
+NOTE:I add the missing try/catch the all my functions - I double check the test script but it seems that everything works fine for me, so I think this erros that appears on your machine because u use different OS, I use windown 10, so if you use macOS, try replace the test script in package.json file with this script
+
+NOTE:to make sure that you are running the script on TESTING mood, this message `-------------------TEST------------------` NOT this `-------------------DEV-------------------` should appear before implementing any jasmine test case
+
+```
+"test": "db-migrate up:test --env test && ENV=test && npm run build && npm run jasmine && db-migrate down:test --env test -c 4",
+```
+
 # .env File
 
 create `.env` file in the root directory and set your password in `###`
