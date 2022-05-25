@@ -6,55 +6,75 @@ const routes = Router()
 const product = new ProductModel()
 
 const index = async (_req: Request, res: Response): Promise<void> => {
-  const result = await product.index()
-  if (result) {
-    res.json(result)
+  try {
+    const result = await product.index()
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('no products founds')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('no products founds')
-  return
 }
 
 const show = async (req: Request, res: Response): Promise<void> => {
   const id: number = parseInt(req.params.id)
-  const result = await product.show(id)
-  if (result) {
-    res.json(result)
+  try {
+    const result = await product.show(id)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('now product found')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('now product found')
-  return
 }
 
 const showByCategory = async (req: Request, res: Response): Promise<void> => {
   const cat: string = req.params.cat
-  const result = await product.showByCategory(cat)
-  if (result) {
-    res.json(result)
+  try {
+    const result = await product.showByCategory(cat)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('no product found')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('no product found')
-  return
 }
 
 const create = async (req: Request, res: Response): Promise<void> => {
-  const result = await product.create(req.body)
-  if (result) {
-    res.json(result)
+  try {
+    const result = await product.create(req.body)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('no product found')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('no product found')
-  return
 }
 
 const deleteProduct = async (req: Request, res: Response): Promise<void> => {
-  const result = await product.delete(req.params.name)
-  if (result) {
-    res.json(result)
+  try {
+    const result = await product.delete(req.params.name)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.json('something went wrong!')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.json('something went wrong!')
-  return
 }
 
 routes.get('/products', index)

@@ -7,52 +7,68 @@ const user = new UserModel() //user instance
 
 //get all users
 const index = async (_req: Request, res: Response): Promise<void> => {
-  const result = await user.index()
+  try {
+    const result = await user.index()
 
-  if (result) {
-    res.json(result)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('no users found')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('no users found')
-  return
 }
 
 //show user by id
 const show = async (req: Request, res: Response): Promise<void> => {
   const id = parseInt(req.params.id)
-  const result = await user.show(id)
+  try {
+    const result = await user.show(id)
 
-  if (result) {
-    res.json(result)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('no user found')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('no user found')
-  return
 }
 
 //create new user
 const create = async (req: Request, res: Response): Promise<void> => {
-  const result = await user.create(req.body)
+  try {
+    const result = await user.create(req.body)
 
-  //return token if exist
-  if (result) {
-    res.json(result)
+    //return token if exist
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('username is taken, try another one')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('username is taken, try another one')
-  return
 }
 
 //delete user
 const deleteUser = async (req: Request, res: Response): Promise<void> => {
-  const result = await user.delete(req.params.username)
-  //check if the user is deleted
-  if (result) {
-    res.json(result)
+  try {
+    const result = await user.delete(req.params.username)
+    //check if the user is deleted
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('something went wrong!')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('something went wrong!')
-  return
 }
 
 routes.get('/users', auth, index)

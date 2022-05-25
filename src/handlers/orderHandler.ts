@@ -8,26 +8,35 @@ const order = new OrderModel() //order instance
 //get all orders by order_id
 const index = async (req: Request, res: Response): Promise<void> => {
   const id: number = parseInt(req.params.id)
-  const result = await order.index(id)
-  if (result) {
-    res.json(result)
+  try {
+    const result = await order.index(id)
+
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('No result found to this user')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('No result found to this user')
-  return
 }
 
 //show Current Order by user_id
 const getCurrentOrder = async (req: Request, res: Response): Promise<void> => {
   const id: number = parseInt(req.params.id)
-  const result = await order.getCurrentOrder(id)
+  try {
+    const result = await order.getCurrentOrder(id)
 
-  if (result) {
-    res.json(result)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('No result found to this user')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('No result found to this user')
-  return
 }
 
 // show completed Orders by user_id
@@ -36,14 +45,18 @@ const getCompletedOrders = async (
   res: Response
 ): Promise<void> => {
   const id: number = parseInt(req.params.id)
-  const result = await order.getCompletedOrders(id)
+  try {
+    const result = await order.getCompletedOrders(id)
 
-  if (result) {
-    res.json(result)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send("This user doesn'nt have any completed orders")
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send("This user doesn'nt have any completed orders")
-  return
 }
 
 // create new order
@@ -58,28 +71,35 @@ const create = async (req: Request, res: Response): Promise<void> => {
     )
     return
   }
+  try {
+    const result = await order.create({ user_id, status, products })
 
-  const result = await order.create({ user_id, status, products })
-
-  if (result) {
-    res.json(result)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('User not found!')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('User not found!')
-  return
 }
 
 // Delete order
 const deleteOrder = async (req: Request, res: Response): Promise<void> => {
   const order_id: number = parseInt(req.params.order_id) as unknown as number
-  const result = await order.delete(order_id)
+  try {
+    const result = await order.delete(order_id)
 
-  if (result) {
-    res.json(result)
+    if (result) {
+      res.json(result)
+      return
+    }
+    res.send('order not found!')
     return
+  } catch (err) {
+    throw new Error(`Error: ${err}`)
   }
-  res.send('order not found!')
-  return
 }
 
 routes.get('/orders/user/:id', auth, index)
