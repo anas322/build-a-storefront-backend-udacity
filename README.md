@@ -31,13 +31,7 @@ psql -U ###
 create `store` and `store_test` Database
 
 ```
-CREATE DATABASE store; CREATE DATABASE store_test
-```
-
-migrate the database
-
-```
-db-migrate up
+CREATE DATABASE store; CREATE DATABASE store_test;
 ```
 
 ## start project
@@ -46,6 +40,12 @@ install dependencies
 
 ```
 npm install
+```
+
+migrate the database
+
+```
+db-migrate up
 ```
 
 start the serve
