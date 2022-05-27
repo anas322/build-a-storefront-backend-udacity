@@ -1,6 +1,6 @@
 updated NOTE: I take your advice of createing a beforeAll and afterAll to migrate the database instead of just add the test script even though before all tests was successed for me, anyway I upated my tests folder and create a function to migrate the database with data I need to all tests requirments, here is a screenshut of the successfull tests
 
-![Test Cases](/assets/images/screen.png)
+![Test Cases](screen.png)
 
 NOTE:I add the missing try/catch the all my functions - I double check the test script but it seems that everything works fine for me, so I think this erros that appears on your machine because u use different OS, I use windown 10, so if you use macOS, try replace the test script in package.json file with this script
 
