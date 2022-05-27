@@ -7,4 +7,4 @@ CREATE TABLE users(
 );
 
 
-INSERT INTO users(username,firstname,lastname,password) values ('user1','test','test','password'),('user2','test','test','password');
+-- INSERT INTO users(username,firstname,lastname,password) values ('user1','test','test','password'),('user2','test','test','password');

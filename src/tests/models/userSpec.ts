@@ -1,5 +1,7 @@
 import { UserModel } from '../../models/user'
 
+import { DatabaseHungry } from '../databaseHandler'
+
 const user = new UserModel()
 
 describe('Test all user model functions', () => {
@@ -44,4 +46,5 @@ describe('Test all user model functions', () => {
 //Delete the created user after testing
 afterAll(async (): Promise<void> => {
   await user.delete('testUser')
+  await DatabaseHungry()
 })

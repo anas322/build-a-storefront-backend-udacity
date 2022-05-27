@@ -2,6 +2,7 @@ import app from '../../server'
 import supertest from 'supertest'
 import { CreateOrder } from '../../models/order'
 
+import { DatabaseEat } from '../databaseHandler'
 const endpoint = supertest(app)
 
 const order: CreateOrder = {
@@ -63,4 +64,8 @@ describe('Test all order handler endpoints', async () => {
 
     expect(response.status).toBe(200)
   })
+})
+
+beforeAll(async (): Promise<void> => {
+  await DatabaseEat()
 })

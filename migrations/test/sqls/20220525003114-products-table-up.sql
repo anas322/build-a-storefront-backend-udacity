@@ -5,4 +5,4 @@ CREATE TABLE products(
     category VARCHAR(100) NOT NULL
 );
 
-INSERT INTO products(name,price,category) values ('cherry','40','fruits'),('tomatto','50','vegetables'),('watermelon','60','vegetables');
+-- INSERT INTO products(name,price,category) values ('cherry','40','fruits'),('tomatto','50','vegetables'),('watermelon','60','vegetables');

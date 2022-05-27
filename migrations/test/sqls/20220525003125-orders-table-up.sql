@@ -7,4 +7,4 @@ CREATE TABLE orders(
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE ON UPDATE CASCADE 
 );
 
-INSERT INTO orders(user_id,status) VALUES (1,'active'),(1,'complete');
+-- INSERT INTO orders(user_id,status) VALUES (1,'active'),(1,'complete');

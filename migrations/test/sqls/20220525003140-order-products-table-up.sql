@@ -5,4 +5,4 @@ CREATE TABLE order_products(
     quantity   INTEGER NOT NULL
 );
 
-INSERT INTO order_products(order_id,product_id,quantity) VALUES (1,1,5),(2,1,5);
+-- INSERT INTO order_products(order_id,product_id,quantity) VALUES (1,1,5),(2,1,5);

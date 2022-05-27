@@ -7,7 +7,7 @@
     "start": "nodemon src/server.ts",
     "build": "npx tsc",
     "jasmine": "jasmine",
-    "test": "db-migrate up:test --env test && SET ENV=test && npm run build && npm run jasmine && db-migrate down:test --env test -c 4",
+    "test": "db-migrate up:test --env test && SET ENV=test && npm run build && npm run jasmine",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "prettier": "prettier --config .prettierrc.json 'src/**/*.ts' --write",
     "lint": "eslint . --ext .ts"
